@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('head');
             $table->text('text');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
