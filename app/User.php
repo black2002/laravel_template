@@ -14,6 +14,23 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function article(){
+
+        return $this->hasMany('App\Article');
+    }
+    public function role(){
+
+        return $this->hasMany('App\Role');
+    }
+
+    public function country(){
+
+        return $this->hasMany('App\Country');
+    }
+
+
+
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
