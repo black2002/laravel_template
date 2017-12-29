@@ -1,11 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Article;
-use App\Country;
-use App\Role;
-use App\User;
-
+use Collective\Html\Eloquent;
 
 
 class DatabaseSeeder extends Seeder
@@ -17,19 +13,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Article::unguard();
-        Country::unguard();
-        Role::unguard();
-        User::unguard();
+        \Illuminate\Database\Eloquent\Model::unguard();
 
-        $this->call(UserFactory::class);
-        $this->call(CountryFactory::class);
-        $this->call(RoleFactory::class);
-        $this->call(ArticleFactory::class);
 
-        Article::reguard();
-        Country::reguard();
-        Role::reguard();
-        User::reguard();
+        for ($i = 0; $i < 50; $i++) {
+            $user = factory(App\User::class)->create();
+            $role = factory(App\Role::class)->create();
+            $article = factory(App\Article::class)->create();
+
+            $country = factory(App\Country::class)->create();
+
+
+            DB::table('role_user')->insert([
+                'user_id' => rand(1,50),
+                'role_id' => rand(1,50)
+            ]);
+
+
+
+        }
+        \Illuminate\Database\Eloquent\Model::reguard();
     }
 }

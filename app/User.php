@@ -23,7 +23,7 @@ class User extends Authenticatable
     }
     public function role(){
 
-        return $this->hasMany('App\Role','role_user','role_id','user_id');
+        return $this->belongsToMany('App\Role');
     }
 
     public function country(){
@@ -37,6 +37,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    protected $table = 'users';
 
     /**
      * The attributes that should be hidden for arrays.

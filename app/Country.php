@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Country extends Model
 {
     use SoftDeletes;
+    protected $fillable = [
+        'user_id',
+        'country'
+    ];
+    protected $table = 'countries';
     protected $dates = ['deleted_at'];
     protected $guarded = [];
     public function user(){
